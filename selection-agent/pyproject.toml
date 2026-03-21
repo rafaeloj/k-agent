@@ -1,0 +1,78 @@
+# =====================================================================
+# For a full TOML configuration guide, check the Flower docs:
+# https://flower.ai/docs/framework/how-to-configure-pyproject-toml.html
+# =====================================================================
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "selection-agent"
+version = "1.0.0"
+description = ""
+license = "Apache-2.0"
+# Dependencies for your Flower App
+dependencies = [
+    "flwr[simulation]>=1.23.0",
+    "flwr-datasets[vision]>=0.5.0",
+    "torch==2.7.1",
+    "torchvision==0.22.1",
+    "langgraph>=1.0.3",
+    "langchain>=1.0.8",
+    "langchain-ollama>=1.0.0",
+    "omegaconf>=2.3.0",
+    "transformers>=4.57.1",
+    "peft>=0.18.0",
+    "trl>=0.25.1",
+    "bitsandbytes>=0.48.2",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.flwr.app]
+publisher = "rojarczewski"
+
+# Point to your ServerApp and ClientApp objects
+[tool.flwr.app.components]
+serverapp = "selection_agent.server_app:app"
+clientapp = "selection_agent.client_app:app"
+
+# Custom config values accessible via `context.run_config`
+[tool.flwr.app.config]
+num-supernodes = 5 # Always double-check the second num-supernodes value.
+num-server-rounds = 50
+fraction-train = 1
+local-epochs = 3
+lr = 0.0001
+sample-size=15 #-1 lets the agent choose K, -2 randomly generates K
+noniid=true
+selection-method='k-agent' # k-agent, agent-selection, oort, poc, rrobin, random, random-selections
+k-agent-selection-method='random_selection' # random_selection, oort_selection, poc_selection, round_robin_selection
+prompt-type="chain-of-thought" #description-only few-shot
+#agent
+llm-model-name='qwen3:0.6b'
+
+# dataset-name = 'wikitext'
+dataset-name = "mnist" # 'mnist' 'wikitext' 'cifar10'
+model-name = 'cnn-mnist' #'cnn-mnist' 'cnn' 'lstm
+batch-size = 64
+
+# LSTM
+embedding-dim = 32
+hidden-dim = 64
+num-layers = 2
+seq-len = 5
+vocab-size = 2293121 # Dataset wikitext
+
+# Default federation to use when running the app
+[tool.flwr.federations]
+default = "local-simulation"
+
+[tool.flwr.federations.local-simulation]
+options.num-supernodes = 5
+options.backend.client-resources.num-cpus = 1
+options.backend.client-resources.num-gpus = 0.2
+options.backend.init_args.num_cpus = 30
+options.backend.init_args.num_gpus = 1
