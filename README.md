@@ -11,10 +11,10 @@ This repository contains the implementation and result artifacts used in the **p
 - The `notebooks/sbrc2026` folder name is kept for historical compatibility, but it now serves as appendix-analysis material for the ICLR workshop submission.
 
 <figure>
-    <img src="./image/agents-sbrc2026.png" alt="Perception-reasoning-action workflow of K-Agent."/>
+    <img src="./image/k-agents.png" alt="Perception-reasoning-action workflow of K-Agent."/>
     <figcaption>Perception-reasoning-action workflow of K-Agent.</figcaption>
 </figure>
-
+![alt text](image.png)
 ## Table of Contents
 
 - [Scope and Artifact Status](#scope-and-artifact-status)
