@@ -1,6 +1,6 @@
 # Agentic Federated Learning - Selection Agent
 
-**Paper:** *Agentic Federated Learning: The Future of Distributed Training Orchestration*  
+**Paper:** *[Agentic Federated Learning: The Future of Distributed Training Orchestration](https://openreview.net/forum?id=JBy40fjKoH&noteId=JBy40fjKoH)*  
 **Venue:** ICLR 2026 Workshop on AI for Mechanism Design and Strategic Decision Making
 
 ## Scope and Artifact Status
@@ -8,7 +8,7 @@
 This repository contains the implementation and result artifacts used in the **proof-of-concept experiments reported in the appendix** of the ICLR workshop paper above.
 
 - The experiments and outputs in this repository are the same ones referenced in the paper appendix.
-- The `notebooks/sbrc2026` folder name is kept for historical compatibility, but it now serves as appendix-analysis material for the ICLR workshop submission.
+- The `notebooks/iclr2026` folder name is kept for historical compatibility, but it now serves as appendix-analysis material for the ICLR workshop submission.
 
 <figure>
     <img src="./image/k-agent.png" alt="Perception-reasoning-action workflow of K-Agent."/>
@@ -35,7 +35,7 @@ This repository contains the implementation and result artifacts used in the **p
 
 - Goal: provide a reproducible workflow to evaluate federated client selection strategies with Flower and LLM-based agents.
 - Main components: federated server in `selection-agent/selection_agent/server_app.py`, clients in `selection-agent/selection_agent/client_app.py`, selection strategies in `selection-agent/selection_agent/selections`, and the LLM controller in `selection-agent/selection_agent/agent/k_agent.py`.
-- Supporting artifacts: analysis notebooks in `notebooks/sbrc2026` (figures, tables, and utilities) and automation scripts in `scripts`.
+- Supporting artifacts: analysis notebooks in `notebooks/iclr2026` (figures, tables, and utilities) and automation scripts in `scripts`.
 - Recommended environment: Linux; x86 CPU with 8 cores and 16 GB RAM; optional CUDA-capable GPU (driver compatible with PyTorch 2.7.1); at least 10 GB disk space.
 - Base software: Python 3.10+, Flower 1.23+, PyTorch 2.7.1, and Ollama for local LLM execution.
 
@@ -127,7 +127,7 @@ cd selection-agent
 flwr run . local-simulation
 ```
 
-- Expected outcome: JSON files in `outputs/` showing parameter-traffic reduction between 44.4% and 59% versus random selection while keeping similar accuracy. Consolidate plots with `notebooks/sbrc2026/figura2-figura-3.ipynb`.
+- Expected outcome: JSON files in `outputs/` showing parameter-traffic reduction between 44.4% and 59% versus random selection while keeping similar accuracy. Consolidate plots with `notebooks/iclr2026/figura2-figura-3.ipynb`.
 
 ### Claim 2 - Robustness Under Dynamic Sampling
 
@@ -140,12 +140,12 @@ cd selection-agent
 flwr run . local-simulation
 ```
 
-- Expected outcome: `outputs/` metrics indicating accuracy above 94% under induced delay and up to 20% less bandwidth usage than the fixed baseline. Generate figures with `notebooks/sbrc2026/figura4.ipynb`.
+- Expected outcome: `outputs/` metrics indicating accuracy above 94% under induced delay and up to 20% less bandwidth usage than the fixed baseline. Generate figures with `notebooks/iclr2026/figura4.ipynb`.
 
 ### Experiment Automation
 
 - Script `scripts/k_agent_prompt_type.sh` automates prompt and LLM-model variants. Before running, grant execution permission (`chmod +x scripts/k_agent_prompt_type.sh`), export `CUDA_VISIBLE_DEVICES`, and start Ollama (manually or with `utils/k_start_ollama.sh`). Run from repository root using `./scripts/k_agent_prompt_type.sh 0`.
-- Aggregated table outputs can be reproduced with notebooks `notebooks/sbrc2026/tabela2-tabela-3.ipynb` and `notebooks/sbrc2026/tabela2-tabela-3-literatura.ipynb`, which consume files from `results/`.
+- Aggregated table outputs can be reproduced with notebooks `notebooks/iclr2026/tabela2-tabela-3.ipynb` and `notebooks/iclr2026/tabela2-tabela-3-literatura.ipynb`, which consume files from `results/`.
 
 ## License
 
