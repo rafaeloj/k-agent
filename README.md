@@ -2,7 +2,14 @@
 
 **Paper:** *[Agentic Federated Learning: The Future of Distributed Training Orchestration](https://openreview.net/forum?id=JBy40fjKoH&noteId=JBy40fjKoH)*  
 **Venue:** ICLR 2026 Workshop on AI for Mechanism Design and Strategic Decision Making
-
+```
+@article{jarczewski2026agentic,
+  title={Agentic Federated Learning: The Future of Distributed Training Orchestration},
+  author={Jarczewski, Rafael O and Talasso, Gabriel U and Villas, Leandro and de Souza, Allan M},
+  journal={arXiv preprint arXiv:2604.04895},
+  year={2026}
+}
+```
 ## Scope and Artifact Status
 
 This repository contains the implementation and result artifacts used in the **proof-of-concept experiments reported in the appendix** of the ICLR workshop paper above.
